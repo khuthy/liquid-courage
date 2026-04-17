@@ -367,13 +367,12 @@ h3 { font-size: 1.15rem; }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('images/banner.jpeg');
   background-size: cover;
   background-position: center 30%;
   opacity: 0.12;
   z-index: 0;
   transform: scale(1.05);
-  transition: transform 8s ease;
+  transition: transform 8s ease, background-image 0.3s ease;
 }
 
 .hero:hover .hero-bg { transform: scale(1); }
@@ -688,7 +687,6 @@ h3 { font-size: 1.15rem; }
 .how-bg {
   position: absolute;
   inset: 0;
-  background-image: url('images/logo-on-wood.jpeg');
   background-size: cover;
   background-position: center;
   opacity: 0.04;
@@ -1038,7 +1036,6 @@ h3 { font-size: 1.15rem; }
 .brand-showcase-bg {
   position: absolute;
   inset: 0;
-  background-image: url('images/logo-on-walls.jpeg');
   background-size: cover;
   background-position: center;
   opacity: 0.05;

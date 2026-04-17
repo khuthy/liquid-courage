@@ -257,6 +257,23 @@
     if (d) card.style.transitionDelay = `${d}ms`;
   });
 
+  /* ── Lazy-load CSS background images ── */
+  const bgObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el  = entry.target;
+          const src = el.getAttribute('data-bg');
+          if (src) el.style.backgroundImage = `url('${src}')`;
+          bgObserver.unobserve(el);
+        }
+      });
+    },
+    { rootMargin: '200px 0px' }
+  );
+
+  document.querySelectorAll('[data-bg]').forEach(el => bgObserver.observe(el));
+
   /* ── Run once on load ── */
   onScroll();
 

@@ -21,6 +21,9 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+  <!-- Preload above-the-fold assets -->
+  <link rel="preload" as="image" href="images/transparent-logo.png" />
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -58,7 +61,7 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="home">
-    <div class="hero-bg"></div>
+    <div class="hero-bg" data-bg="images/banner.jpeg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-badge">
@@ -237,7 +240,7 @@
 
   <!-- ===== HOW IT WORKS ===== -->
   <section class="how-it-works" id="how-it-works">
-    <div class="how-bg"></div>
+    <div class="how-bg" data-bg="images/logo-on-wood.jpeg"></div>
     <div class="container how-container">
       <div class="section-header">
         <span class="section-tag">Our Process</span>
@@ -382,7 +385,7 @@
 
   <!-- ===== BRAND SHOWCASE ===== -->
   <section class="brand-showcase">
-    <div class="brand-showcase-bg"></div>
+    <div class="brand-showcase-bg" data-bg="images/logo-on-walls.jpeg"></div>
     <div class="brand-showcase-overlay"></div>
     <div class="container brand-showcase-content">
       <div class="brand-showcase-text">
@@ -417,7 +420,7 @@
         </a>
       </div>
       <div class="brand-showcase-logo">
-        <img src="images/logo-on-wood.jpeg" alt="Liquid Courage Consultants Logo" />
+        <img src="images/logo-on-wood.jpeg" alt="Liquid Courage Consultants Logo" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
@@ -545,7 +548,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-logo-wrap">
-            <img src="images/transparent-logo.png" alt="Liquid Courage Consultants" class="nav-logo-img" />
+            <img src="images/transparent-logo.png" alt="Liquid Courage Consultants" class="nav-logo-img" loading="lazy" decoding="async" />
             <div class="logo-text-wrap">
               <span class="logo-name">LIQUID COURAGE</span>
               <span class="logo-sub">CONSULTANTS</span>
