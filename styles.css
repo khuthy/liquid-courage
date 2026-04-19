@@ -795,41 +795,75 @@ h3 { font-size: 1.15rem; }
    BRAND STRIP
    ============================================================ */
 .brand-strip {
-  background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+  background: var(--dark-3);
+  border-top: 1px solid rgba(212, 160, 23, 0.25);
+  border-bottom: 1px solid rgba(212, 160, 23, 0.25);
   overflow: hidden;
-  padding: 14px 0;
+  padding: 0;
   position: relative;
 }
+
+/* fade edges */
+.brand-strip::before,
+.brand-strip::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+.brand-strip::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--dark-3), transparent);
+}
+.brand-strip::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--dark-3), transparent);
+}
+
+.brand-strip-track {
+  display: flex;
+  width: max-content;
+  animation: scrollStrip 38s linear infinite;
+}
+.brand-strip-track:hover { animation-play-state: paused; }
 
 .brand-strip-inner {
   display: flex;
   align-items: center;
-  gap: 0;
   white-space: nowrap;
-  animation: scrollStrip 28s linear infinite;
-  width: max-content;
 }
 
 .brand-strip-inner span {
-  color: #0A0A08;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0 28px;
+  padding: 16px 24px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
+  transition: color 0.25s ease;
+}
+.brand-strip-inner span:hover { color: var(--gold-light); }
+
+.brand-strip-inner span i {
+  color: var(--gold);
+  font-size: 0.75rem;
+  opacity: 0.85;
 }
 
-.brand-strip-inner .dot {
-  width: 5px;
-  height: 5px;
-  background: rgba(10, 10, 8, 0.4);
-  border-radius: 50%;
-  padding: 0;
-  flex-shrink: 0;
+.brand-strip-inner .bs-sep {
+  color: rgba(212, 160, 23, 0.35);
+  font-size: 0.45rem;
+  padding: 0 4px;
+  letter-spacing: 0;
+  transition: none;
 }
+.brand-strip-inner .bs-sep:hover { color: rgba(212, 160, 23, 0.35); }
 
 /* ============================================================
    SERVICES
