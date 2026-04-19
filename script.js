@@ -173,11 +173,13 @@
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const name    = (document.getElementById('name').value    || '').trim();
-    const email   = (document.getElementById('email').value   || '').trim();
-    const phone   = (document.getElementById('phone').value   || '').trim();
-    const service = (document.getElementById('service').value || '').trim();
-    const message = (document.getElementById('message').value || '').trim();
+    const name        = (document.getElementById('name').value        || '').trim();
+    const email       = (document.getElementById('email').value       || '').trim();
+    const phone       = (document.getElementById('phone').value       || '').trim();
+    const province    = (document.getElementById('province').value    || '').trim();
+    const service     = (document.getElementById('service').value     || '').trim();
+    const licenceType = (document.getElementById('licenceType').value || '').trim();
+    const message     = (document.getElementById('message').value     || '').trim();
 
     // Basic validation
     if (!name) {
@@ -188,12 +190,18 @@
       shakeField('email');
       return;
     }
+    if (!province) {
+      shakeField('province');
+      return;
+    }
 
     // Build WhatsApp message
     let text = `Hello Liquid Courage Consultants!\n\n`;
     text    += `My name is *${name}*.\n`;
-    if (service) text += `I'm interested in: *${service}*.\n`;
-    if (message) text += `\nMessage: ${message}\n`;
+    if (province) text += `Province: *${province}*.\n`;
+    if (service)  text += `I'm interested in: *${service}*.\n`;
+    if (licenceType) text += `Licence type: *${licenceType}*.\n`;
+    if (message)  text += `\nMessage: ${message}\n`;
     text    += `\nContact details:\n`;
     text    += `• Email: ${email}\n`;
     if (phone) text += `• Phone: ${phone}\n`;
@@ -256,6 +264,49 @@
     const d = card.getAttribute('data-delay');
     if (d) card.style.transitionDelay = `${d}ms`;
   });
+
+  /* ── Service card click → scroll to contact + pre-select service ── */
+  document.querySelectorAll('.service-card[data-service]').forEach(card => {
+    card.addEventListener('click', () => {
+      const serviceName = card.getAttribute('data-service');
+      const serviceSelect = document.getElementById('service');
+      const contactSection = document.getElementById('contact');
+
+      // Pre-select service in dropdown
+      if (serviceSelect) {
+        for (const opt of serviceSelect.options) {
+          if (opt.text === serviceName) {
+            opt.selected = true;
+            serviceSelect.dispatchEvent(new Event('change'));
+            break;
+          }
+        }
+      }
+
+      // Scroll to contact
+      if (contactSection) {
+        const top = contactSection.getBoundingClientRect().top + window.scrollY - 72;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  /* ── Conditional Type of Licence field ── */
+  const serviceSelect    = document.getElementById('service');
+  const licenceTypeGroup = document.getElementById('licenceTypeGroup');
+
+  function toggleLicenceType() {
+    if (!serviceSelect || !licenceTypeGroup) return;
+    const isLiquorApp = serviceSelect.value === 'Liquor License Application';
+    licenceTypeGroup.classList.toggle('visible', isLiquorApp);
+    const licenceSelect = document.getElementById('licenceType');
+    if (licenceSelect) licenceSelect.required = isLiquorApp;
+  }
+
+  if (serviceSelect) {
+    serviceSelect.addEventListener('change', toggleLicenceType);
+    toggleLicenceType(); // run on page load in case pre-selected
+  }
 
   /* ── Lazy-load CSS background images ── */
   const bgObserver = new IntersectionObserver(
