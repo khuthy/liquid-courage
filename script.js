@@ -283,9 +283,11 @@
         }
       }
 
-      // Scroll to contact
-      if (contactSection) {
-        const top = contactSection.getBoundingClientRect().top + window.scrollY - 72;
+      // Scroll to contact form
+      const contactForm = document.getElementById('contactForm');
+      const scrollTarget = contactForm || contactSection;
+      if (scrollTarget) {
+        const top = scrollTarget.getBoundingClientRect().top + window.scrollY - 72;
         window.scrollTo({ top, behavior: 'smooth' });
       }
     });
