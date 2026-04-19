@@ -297,12 +297,19 @@
   const serviceSelect    = document.getElementById('service');
   const licenceTypeGroup = document.getElementById('licenceTypeGroup');
 
+  const LICENCE_SERVICES = new Set([
+    'Liquor License Application',
+    'Transfer of Liquor Licence',
+    'Renewals & Compliance',
+    'Temporary License Applications',
+  ]);
+
   function toggleLicenceType() {
     if (!serviceSelect || !licenceTypeGroup) return;
-    const isLiquorApp = serviceSelect.value === 'Liquor License Application';
-    licenceTypeGroup.classList.toggle('visible', isLiquorApp);
+    const needsLicence = LICENCE_SERVICES.has(serviceSelect.value);
+    licenceTypeGroup.classList.toggle('visible', needsLicence);
     const licenceSelect = document.getElementById('licenceType');
-    if (licenceSelect) licenceSelect.required = isLiquorApp;
+    if (licenceSelect) licenceSelect.required = needsLicence;
   }
 
   if (serviceSelect) {
