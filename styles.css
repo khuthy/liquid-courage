@@ -1090,54 +1090,87 @@ h3 { font-size: 1.15rem; }
 }
 
 .industry-card {
+  position: relative;
+  overflow: hidden;
   text-align: center;
-  padding: 44px 28px;
+  padding: 0 28px 40px;
   border-radius: var(--radius-xl);
-  background: var(--gray-100);
-  border: 1px solid var(--gray-200);
+  background-color: var(--dark-card);
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(212, 160, 23, 0.15);
   transition: var(--transition);
   cursor: default;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Dark gradient overlay so text is always readable */
+.industry-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(8, 15, 6, 0.95) 0%,
+    rgba(8, 15, 6, 0.55) 50%,
+    rgba(8, 15, 6, 0.2) 100%
+  );
+  border-radius: inherit;
+  transition: var(--transition);
+}
+
+.industry-card:hover::before {
+  background: linear-gradient(
+    to top,
+    rgba(8, 15, 6, 0.88) 0%,
+    rgba(8, 15, 6, 0.45) 55%,
+    rgba(8, 15, 6, 0.1) 100%
+  );
 }
 
 .industry-card:hover {
-  background: var(--dark);
-  border-color: rgba(212, 160, 23, 0.3);
-  transform: translateY(-6px);
-  box-shadow: var(--shadow);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+  border-color: rgba(212, 160, 23, 0.4);
 }
 
 .industry-icon {
-  font-size: 2.6rem;
+  position: relative;
+  z-index: 1;
+  font-size: 2.2rem;
   color: var(--gold);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   transition: var(--transition);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
-.industry-card:hover .industry-icon {
-  transform: scale(1.1);
-}
+.industry-card:hover .industry-icon { transform: scale(1.12); }
 
 .industry-card h3 {
-  color: var(--gray-800);
-  font-size: 1.1rem;
+  position: relative;
+  z-index: 1;
+  color: var(--white);
+  font-size: 1.15rem;
   margin-bottom: 10px;
   transition: var(--transition);
 }
 
-.industry-card:hover h3 {
-  color: var(--gold);
-}
+.industry-card:hover h3 { color: var(--gold); }
 
 .industry-card p {
-  color: var(--gray-600);
-  font-size: 0.875rem;
-  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.855rem;
+  line-height: 1.65;
   transition: var(--transition);
 }
 
-.industry-card:hover p {
-  color: rgba(255, 255, 255, 0.6);
-}
+.industry-card:hover p { color: rgba(255, 255, 255, 0.85); }
 
 /* ============================================================
    PRICING
