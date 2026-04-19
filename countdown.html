@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coming Soon — Liquid Courage Consultants</title>
+  <meta name="description" content="Something big is launching. Liquid Courage Consultants — your trusted liquor licensing experts." />
+
+  <!-- Open Graph (WhatsApp / Facebook / LinkedIn previews) -->
+  <meta property="og:title" content="🚀 Liquid Courage Consultants — Launching Soon!" />
+  <meta property="og:description" content="Our brand-new website goes live at midnight. Stay tuned for South Africa's premier liquor licensing consultancy." />
+  <meta property="og:image" content="images/og-preview.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="🚀 Liquid Courage Consultants — Launching Soon!" />
+  <meta name="twitter:description" content="Our brand-new website goes live at midnight. South Africa's premier liquor licensing consultancy." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:  #D4A017;
+      --green: #38A158;
+      --dark:  #080F06;
+      --card:  #0f1a0d;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--dark);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── Background orbs ── */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::before {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(56,161,88,0.18) 0%, transparent 70%);
+      top: -100px; left: -150px;
+    }
+    body::after {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(212,160,23,0.12) 0%, transparent 70%);
+      bottom: -100px; right: -100px;
+    }
+
+    /* ── Layout ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 40px;
+    }
+
+    /* ── Logo area ── */
+    .brand {
+      text-align: center;
+    }
+    .brand-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid rgba(212,160,23,0.5);
+      object-fit: cover;
+      margin-bottom: 16px;
+      display: block;
+      margin-inline: auto;
+    }
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+    }
+    .brand-tagline {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-top: 6px;
+    }
+
+    /* ── Headline ── */
+    .headline {
+      text-align: center;
+    }
+    .headline h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 7vw, 3.8rem);
+      line-height: 1.15;
+      background: linear-gradient(135deg, #fff 0%, rgba(212,160,23,0.9) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .headline p {
+      margin-top: 16px;
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    /* ── Gold divider ── */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto;
+    }
+
+    /* ── Countdown ── */
+    .countdown {
+      display: flex;
+      gap: clamp(6px, 2vw, 28px);
+      flex-wrap: nowrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 560px;
+    }
+    .cd-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .cd-card {
+      width: clamp(80px, 18vw, 130px);
+      height: clamp(80px, 18vw, 130px);
+      background: var(--card);
+      border: 1px solid rgba(212,160,23,0.25);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,160,23,0.1);
+    }
+    .cd-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(56,161,88,0.06) 0%, transparent 60%);
+    }
+    .cd-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+    }
+    .cd-label {
+      font-size: clamp(0.62rem, 1.5vw, 0.75rem);
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ── Separator dots ── */
+    .cd-sep {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      color: rgba(212,160,23,0.4);
+      line-height: clamp(80px, 18vw, 130px);
+      font-weight: 700;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    @media (max-width: 480px) {
+      .cd-sep { display: none; }
+      .cd-card {
+        width: clamp(68px, 20vw, 90px);
+        height: clamp(68px, 20vw, 90px);
+      }
+    }
+
+    /* ── Launch message (shown at zero) ── */
+    .launch-msg {
+      display: none;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+    .launch-msg h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--gold);
+    }
+    .launch-msg p { color: rgba(255,255,255,0.6); margin-top: 12px; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── CTA button ── */
+    .cta-wrap { text-align: center; }
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-wa {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+    }
+    .btn-wa:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.4); }
+
+    /* ── Social strip ── */
+    .socials {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .social-link {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,160,23,0.25);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.55);
+      font-size: 1rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    /* ── Footer note ── */
+    .foot-note {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.25);
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Pulse ring on launch ── */
+    .pulse-ring {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      display: none;
+    }
+    .pulse-ring::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      transform: translate(-50%, -50%);
+      animation: pulseOut 2s ease-out infinite;
+    }
+    @keyframes pulseOut {
+      0%   { transform: translate(-50%,-50%) scale(1);  opacity: 0.8; }
+      100% { transform: translate(-50%,-50%) scale(8);  opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Brand -->
+    <div class="brand">
+      <img src="images/logo.png" alt="Liquid Courage Consultants logo" class="brand-logo"
+           onerror="this.style.display='none'" />
+      <div class="brand-name">Liquid Courage Consultants</div>
+      <div class="brand-tagline">Liquor Licensing &amp; Compliance Experts</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Headline -->
+    <div class="headline">
+      <h1>Something Big<br>Is Coming</h1>
+      <p>Our brand-new website launches at midnight on <strong>20 April 2026</strong>.
+         South Africa's most trusted liquor licensing consultancy — finally online.</p>
+    </div>
+
+    <!-- Countdown -->
+    <div class="countdown" id="countdown">
+      <div class="cd-block">
+        <div class="cd-card"><span class="cd-number" id="cd-days">00</span></div>
+        <span class="cd-label">Days</span>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-block">
+        <div class="cd-card"><span class="cd-number" id="cd-hours">00</span></div>
+        <span class="cd-label">Hours</span>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-block">
+        <div class="cd-card"><span class="cd-number" id="cd-mins">00</span></div>
+        <span class="cd-label">Minutes</span>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-block">
+        <div class="cd-card"><span class="cd-number" id="cd-secs">00</span></div>
+        <span class="cd-label">Seconds</span>
+      </div>
+    </div>
+
+    <!-- Launch message (hidden until zero) -->
+    <div class="launch-msg" id="launchMsg">
+      <h2>🥃 We're Live!</h2>
+      <p>The wait is over. Welcome to Liquid Courage Consultants.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- WhatsApp CTA -->
+    <div class="cta-wrap">
+      <a href="https://wa.me/27670117602" target="_blank" rel="noopener" class="btn-cta btn-wa">
+        <i class="fab fa-whatsapp"></i> Chat with us on WhatsApp
+      </a>
+    </div>
+
+    <!-- Socials -->
+    <div class="socials">
+      <a href="https://www.instagram.com/liquidcourageconsultants" target="_blank" rel="noopener"
+         class="social-link" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://vm.tiktok.com/ZM68MwMpC/" target="_blank" rel="noopener"
+         class="social-link" aria-label="TikTok">
+        <i class="fab fa-tiktok"></i>
+      </a>
+      <a href="https://whatsapp.com/channel/0029VbBqf43BfxoB1UN6mk3P" target="_blank" rel="noopener"
+         class="social-link" aria-label="WhatsApp Channel">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <p class="foot-note">© 2026 Liquid Courage Consultants · Johannesburg, South Africa</p>
+  </div>
+
+  <!-- Pulse effect on launch -->
+  <div class="pulse-ring" id="pulseRing"></div>
+
+  <script>
+    // ── Target: 20 April 2026, 23:59:59 SAST (UTC+2) = 21 April 2026 01:59:59 UTC
+    // = midnight ending April 20 in South Africa
+    const TARGET = new Date('2026-04-21T00:00:00+02:00').getTime();
+
+    const elDays  = document.getElementById('cd-days');
+    const elHours = document.getElementById('cd-hours');
+    const elMins  = document.getElementById('cd-mins');
+    const elSecs  = document.getElementById('cd-secs');
+    const cdWrap  = document.getElementById('countdown');
+    const launchMsg = document.getElementById('launchMsg');
+    const pulseRing = document.getElementById('pulseRing');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function tick() {
+      const now  = Date.now();
+      const diff = TARGET - now;
+
+      if (diff <= 0) {
+        elDays.textContent = elHours.textContent = elMins.textContent = elSecs.textContent = '00';
+        cdWrap.style.display   = 'none';
+        launchMsg.style.display = 'block';
+        pulseRing.style.display = 'block';
+        return;
+      }
+
+      const days  = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const mins  = Math.floor((diff % 3600000)  / 60000);
+      const secs  = Math.floor((diff % 60000)    / 1000);
+
+      elDays.textContent  = pad(days);
+      elHours.textContent = pad(hours);
+      elMins.textContent  = pad(mins);
+      elSecs.textContent  = pad(secs);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
