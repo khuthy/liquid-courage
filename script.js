@@ -265,31 +265,35 @@
     if (d) card.style.transitionDelay = `${d}ms`;
   });
 
-  /* ── Service card click → scroll to contact + pre-select service ── */
-  document.querySelectorAll('.service-card[data-service]').forEach(card => {
-    card.addEventListener('click', () => {
-      const serviceName = card.getAttribute('data-service');
-      const serviceSelect = document.getElementById('service');
-      const contactSection = document.getElementById('contact');
-
-      // Pre-select service in dropdown
-      if (serviceSelect) {
-        for (const opt of serviceSelect.options) {
-          if (opt.text === serviceName) {
-            opt.selected = true;
-            serviceSelect.dispatchEvent(new Event('change'));
-            break;
-          }
+  /* ── Pre-select service + scroll to form (service cards & footer links) ── */
+  function preSelectService(serviceName) {
+    const serviceSelect = document.getElementById('service');
+    if (serviceSelect) {
+      for (const opt of serviceSelect.options) {
+        if (opt.text === serviceName) {
+          opt.selected = true;
+          serviceSelect.dispatchEvent(new Event('change'));
+          break;
         }
       }
+    }
+    const contactForm = document.getElementById('contactForm');
+    const contactSection = document.getElementById('contact');
+    const scrollTarget = contactForm || contactSection;
+    if (scrollTarget) {
+      const top = scrollTarget.getBoundingClientRect().top + window.scrollY - 72;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }
 
-      // Scroll to contact form
-      const contactForm = document.getElementById('contactForm');
-      const scrollTarget = contactForm || contactSection;
-      if (scrollTarget) {
-        const top = scrollTarget.getBoundingClientRect().top + window.scrollY - 72;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
+  document.querySelectorAll('.service-card[data-service]').forEach(card => {
+    card.addEventListener('click', () => preSelectService(card.getAttribute('data-service')));
+  });
+
+  document.querySelectorAll('a[data-service]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      preSelectService(link.getAttribute('data-service'));
     });
   });
 
