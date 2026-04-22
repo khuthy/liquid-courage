@@ -80,9 +80,7 @@
       const target = document.querySelector(id);
       if (target) {
         e.preventDefault();
-        const offset = 72; // navbar height
-        const top    = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   });
@@ -143,7 +141,7 @@
         }
       });
     },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    { threshold: 0.08, rootMargin: '0px 0px 0px 0px' }
   );
 
   document.querySelectorAll('[data-aos]').forEach(el => aosObserver.observe(el));
@@ -277,12 +275,9 @@
         }
       }
     }
-    const contactForm = document.getElementById('contactForm');
     const contactSection = document.getElementById('contact');
-    const scrollTarget = contactForm || contactSection;
-    if (scrollTarget) {
-      const top = scrollTarget.getBoundingClientRect().top + window.scrollY - 72;
-      window.scrollTo({ top, behavior: 'smooth' });
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 
