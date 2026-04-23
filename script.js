@@ -25,7 +25,7 @@
 
   let currentIndex = 0;
   let isAnimating  = false;
-  const ANIM_MS    = 700;
+  const ANIM_MS    = 450;
 
   /* -- Apply fixed-panel styles to every section -- */
   panels.forEach((panel, i) => {
@@ -146,6 +146,7 @@
     }
 
     currentIndex = index;
+    to.scrollTop = 0;
     triggerPanelAnimations(to);
     updateNavState(index);
 

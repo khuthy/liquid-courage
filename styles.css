@@ -2036,8 +2036,8 @@ a.contact-item:hover .contact-icon {
 [data-aos] {
   opacity: 0;
   transform: translateY(70px) scale(0.95);
-  transition: opacity 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
-              transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 [data-aos].is-visible {
