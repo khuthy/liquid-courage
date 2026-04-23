@@ -51,6 +51,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
   font-size: 16px;
 }
 
@@ -2031,17 +2032,33 @@ a.contact-item:hover .contact-icon {
 }
 
 /* ============================================================
+   SCROLL SNAP — sections snap into view on scroll
+   ============================================================ */
+.hero,
+.services,
+.how-it-works,
+.industries,
+.pricing,
+.pricing-brackets,
+.brand-showcase,
+.contact {
+  scroll-snap-align: start;
+  scroll-margin-top: 72px;
+}
+
+/* ============================================================
    ANIMATIONS
    ============================================================ */
 [data-aos] {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transform: translateY(60px) scale(0.97);
+  transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 [data-aos].is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 @keyframes fadeSlideDown {
