@@ -25,7 +25,8 @@
 
   let currentIndex = 0;
   let isAnimating  = false;
-  const ANIM_MS    = 450;
+  const mobile  = () => window.innerWidth <= 768;
+  const ANIM_MS = () => mobile() ? 300 : 450;
 
   /* -- Apply fixed-panel styles to every section -- */
   panels.forEach((panel, i) => {
@@ -37,8 +38,6 @@
       height:     '100%',
       overflowY:  'auto',
       overflowX:  'hidden',
-      transition: `transform ${ANIM_MS}ms cubic-bezier(0.77, 0, 0.175, 1),
-                   opacity   ${ANIM_MS}ms ease`,
       willChange: 'transform, opacity',
     });
 
@@ -77,8 +76,9 @@
     els.forEach(el => el.classList.remove('is-visible'));
     requestAnimationFrame(() => {
       els.forEach(el => {
-        const delay = parseInt(el.getAttribute('data-delay') || '0', 10) + 150;
-        setTimeout(() => el.classList.add('is-visible'), delay);
+        /* On mobile skip stagger delays — fire everything at once */
+        const stagger = mobile() ? 0 : parseInt(el.getAttribute('data-delay') || '0', 10);
+        setTimeout(() => el.classList.add('is-visible'), stagger + 100);
       });
     });
   }
@@ -114,35 +114,40 @@
     const from      = panels[currentIndex];
     const to        = panels[index];
     const goingDown = index > currentIndex;
+    const dur       = ANIM_MS();
+    const isMob     = mobile();
+
+    /* Set transition duration for this specific navigation */
+    const trans = `transform ${dur}ms cubic-bezier(0.77, 0, 0.175, 1), opacity ${dur}ms ease`;
+    from.style.transition = trans;
+    to.style.transition   = trans;
 
     if (goingDown) {
-      /* Incoming slides up on top; outgoing shrinks & fades behind */
-      to.style.zIndex       = '200';
-      to.style.transform    = 'translateY(100%)';
+      to.style.zIndex        = '200';
+      to.style.transform     = 'translateY(100%)';
       to.style.pointerEvents = 'none';
-      from.style.zIndex     = '150';
+      from.style.zIndex      = '150';
 
-      /* Force reflow so the starting transform is painted */
       to.getBoundingClientRect();
 
-      to.style.transform    = 'translateY(0) scale(1)';
-      to.style.opacity      = '1';
-      from.style.transform  = 'scale(0.85) translateY(-4%)';
-      from.style.opacity    = '0.2';
+      to.style.transform   = 'translateY(0) scale(1)';
+      to.style.opacity     = '1';
+      /* On mobile skip the scale — just fade out to keep GPU load low */
+      from.style.transform = isMob ? 'translateY(0)' : 'scale(0.85) translateY(-4%)';
+      from.style.opacity   = '0';
     } else {
-      /* Going up: reveal panel from behind as current slides back down */
-      to.style.transform    = 'scale(0.85) translateY(-4%)';
-      to.style.opacity      = '0.2';
-      to.style.zIndex       = '200';
-      from.style.zIndex     = '150';
+      to.style.transform     = isMob ? 'translateY(0)' : 'scale(0.85) translateY(-4%)';
+      to.style.opacity       = isMob ? '1' : '0.2';
+      to.style.zIndex        = '200';
+      from.style.zIndex      = '150';
       to.style.pointerEvents = 'none';
 
       to.getBoundingClientRect();
 
-      to.style.transform    = 'translateY(0) scale(1)';
-      to.style.opacity      = '1';
-      from.style.transform  = 'translateY(100%)';
-      from.style.opacity    = '1';
+      to.style.transform   = 'translateY(0) scale(1)';
+      to.style.opacity     = '1';
+      from.style.transform = 'translateY(100%)';
+      from.style.opacity   = '1';
     }
 
     currentIndex = index;
@@ -156,6 +161,8 @@
       to.style.zIndex          = '100';
       to.style.pointerEvents   = 'auto';
       from.style.zIndex        = '50';
+      from.style.transition    = '';
+      to.style.transition      = '';
 
       /* Settle all panels to clean state */
       panels.forEach((p, i) => {
@@ -168,7 +175,7 @@
           p.style.opacity   = '1';
         }
       });
-    }, ANIM_MS + 60);
+    }, dur + 60);
   }
 
   /* -- Wheel: navigate between panels, allow internal scroll within a panel -- */
